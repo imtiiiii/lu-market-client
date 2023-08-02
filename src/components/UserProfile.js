@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import avatarImg from "../assets/avatar.jpeg";
+import { UserContext } from "../contexts/UserContext";
 // import { AuthContext } from "../contexts/UserContext";
 
 const UserProfile = () => {
-const user =null
+  const { userLoading, user } = useContext(UserContext);
 
   return (
     <div className="flex justify-center my-10 md:my-32">
@@ -26,7 +27,7 @@ const user =null
         <div className="flex flex-col space-y-4">
           <div>
             <h2 className="text-2xl font-semibold">
-              {user?.displayName ? user.displayName : "Name Not Available"}
+              {user?.name ? user.name : "Name Not Available"}
             </h2>
           </div>
           <div className="space-y-1">
@@ -44,7 +45,7 @@ const user =null
               </svg>
               <span className="text-gray-700">{user?.email}</span>
             </span>
-            <span className="flex items-center space-x-2 w-full">
+            {/* <span className="flex items-center space-x-2 w-full">
               <span className="text-gray-400 text-small">
                 Email Status:{" "}
                 {user?.emailVerified ? (
@@ -53,11 +54,14 @@ const user =null
                   <span className="text-red-500">Not Verified</span>
                 )}
               </span>
-            </span>
+            </span> */}
             <span className="flex items-center space-x-2 w-full">
               <span className="text-gray-400 text-small w-full">
                 {" "}
-                ID: {user?.uid}
+                {
+                  user?.student_id ? <p>Student ID: {user?.student_id}</p> : "Student ID Not Available"
+                }
+
               </span>
             </span>
           </div>

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+axios.defaults.withCredentials = true;
 
 const Sell = () => {
   const [selected, setSelected] = useState("");
@@ -6,17 +9,40 @@ const Sell = () => {
   const handleChange = (event) => {
     setSelected(event.target.value);
   };
-  const handleAddUser = (event) => {
+  const handleAddUser = async (event) => {
     event.preventDefault();
+    const fileInput = document.getElementById('photo');
     // console.log("Add User Fired");
     const form = event.target;
     const productName = form.productName.value;
-    const brandName = form.brand.value;
     const productPrice = form.price.value;
-    const sellerName = form.sellerName.value;
-    const sellerContactNumber = form.phoneNumber.value;
     const productInfo = form.productInfo.value;
-    form.reset();
+    const newForm = new FormData();
+    newForm.append("name", productName);
+    newForm.append("description", productInfo);
+    newForm.append("category", selected);
+    newForm.append("price", productPrice);
+    newForm.append("image", fileInput.files[0]);
+
+    try {
+      console.log('here')
+      const res = await axios.post("http://localhost:3333/product/add-buy-product", newForm);
+      if (res.status === 200) {
+        toast('Product added successfully')
+      }
+      form.reset();
+    } catch (error) {
+      toast.error('Something went wrong')
+
+    }
+    // const payload = {
+    //   name: productName,
+    //   description: productInfo,
+    //   category: selected,
+    //   price: productPrice,
+    // }
+    // console.log('product', payload)
+    // form.reset();
   };
 
   return (
@@ -51,10 +77,10 @@ const Sell = () => {
                         id="name"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Type product name"
-                        required=""
+
                       />
                     </div>
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         htmlFor="brand"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -67,9 +93,9 @@ const Sell = () => {
                         id="brand"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Product brand"
-                        required=""
+                        
                       />
-                    </div>
+                    </div> */}
                     <div className="w-full">
                       <label
                         htmlFor="price"
@@ -83,7 +109,7 @@ const Sell = () => {
                         id="price"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Taka"
-                        required=""
+
                       />
                     </div>
                     <div>
@@ -99,10 +125,10 @@ const Sell = () => {
                         onChange={handleChange}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       >
-                        <option selected="">Select a category</option>
-                        <option value="laptop">Laptop/Monitor/PC</option>
-                        <option value="getget">Gadget</option>
-                        <option value="phone">Phone</option>
+
+                        <option value="laptop">Laptop/PC</option>
+                        <option value="mobile">Phone</option>
+                        <option value="gadget">Gadget</option>
                       </select>
                     </div>
                     <div>
@@ -119,38 +145,6 @@ const Sell = () => {
                         className="p-2 w-11/12 border-2 border-dashed rounded-md dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
                       />
                     </div>
-                    <div className="w-full">
-                      <label
-                        htmlFor="brand"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Your Name
-                      </label>
-                      <input
-                        type="text"
-                        name="sellerName"
-                        id="name"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Your Name"
-                        required=""
-                      />
-                    </div>
-                    <div className="w-full">
-                      <label
-                        htmlFor="contact-number"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Your Contact Number
-                      </label>
-                      <input
-                        type=""
-                        name="phoneNumber"
-                        id="phone-number"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Phone Number"
-                        required=""
-                      />
-                    </div>
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="description"
@@ -161,7 +155,7 @@ const Sell = () => {
                       <textarea
                         id="description"
                         name="productInfo"
-                        rows="4"
+                        rows={4}
                         className="block p-2 w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Your description here"
                       ></textarea>

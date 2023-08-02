@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import axios from 'axios'
+import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 axios.defaults.withCredentials = true;
 const Register = () => {
@@ -10,8 +10,6 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const { userLoading, user } = useContext(UserContext);
-  
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,22 +19,19 @@ const Register = () => {
     const password = form.password.value;
     const studentId = form.studentId.value;
     try {
-      const res = await axios.post('http://localhost:3333/auth/register', {
+      const res = await axios.post("http://localhost:3333/auth/register", {
         name,
         email,
         password,
-        student_id: studentId
-      })
+        student_id: studentId,
+      });
       if (res.data) {
         toast.success("Account created successfully! ");
       }
       form.reset();
-
     } catch (error) {
       toast.error(error.message);
     }
-
-
 
     // sign up using email and password
     // createUser(email, password)
@@ -94,7 +89,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center py-8">
-      <div className="flex flex-col max-w-md p-4 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+      <div className="flex flex-col p-4 rounded-md sm:p-10 bg-gray-100 w-96 sm:w-1/4 md:w-1/3 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Register</h1>
           <p className="text-sm text-gray-400">Create a new account</p>
@@ -138,13 +133,13 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
-                Student id
+                Student ID
               </label>
               <input
                 type="text"
                 name="studentId"
                 id="student_id"
-                placeholder="Enter Your student id here"
+                placeholder="Enter Your Student ID Here"
                 autoComplete="off"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
@@ -226,7 +221,7 @@ const Register = () => {
             </svg>
           </button>
         </div> */}
-        <p className="px-6 text-sm text-center text-gray-400">
+        <p className="px-6 pt-6 text-sm text-center text-gray-400">
           Already have an account?{" "}
           <Link to="/login" className="hover:underline text-blue-700">
             sign in

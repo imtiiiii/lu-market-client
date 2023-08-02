@@ -25,7 +25,10 @@ const Buy = () => {
       setLaptopProducts(laptop.data)
 
     } catch (error) {
-      console.log("🚀 ~ file: Buy.js:13 ~ error:", error)
+      setMobileProducts([])
+      setGadgetProducts([])
+      setLaptopProducts([])
+
 
     }
   };
@@ -61,7 +64,7 @@ const Buy = () => {
                 alt="NIKE AIR"
               />
               <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
-                <h1 className="text-lg font-bold text-white">TK {product.price }</h1>
+                <h1 className="text-lg font-bold text-white">TK {product.price}</h1>
                 {/* <p className="text-white text-md"></p> */}
                 <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
                   Buy Now
@@ -161,7 +164,7 @@ const Buy = () => {
         </h1>
       </div>
       <div className="grid gap-y-4 px-3 md:px-0 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4">
-      {
+        {
           gadgetProducts.map((product, index) => (
             <div key={index} className="rounded-lg shadow-lg dark:bg-gray-800 border-2">
               <div className="px-4 py-2">
@@ -181,7 +184,7 @@ const Buy = () => {
                 alt="NIKE AIR"
               />
               <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
-                <h1 className="text-lg font-bold text-white">TK {product.price }</h1>
+                <h1 className="text-lg font-bold text-white">TK {product.price}</h1>
                 {/* <p className="text-white text-md"></p> */}
                 <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
                   Buy Now
@@ -221,7 +224,7 @@ const Buy = () => {
                 alt="NIKE AIR"
               />
               <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
-                <h1 className="text-lg font-bold text-white">TK {product.price }</h1>
+                <h1 className="text-lg font-bold text-white">TK {product.price}</h1>
                 {/* <p className="text-white text-md"></p> */}
                 <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
                   Buy Now

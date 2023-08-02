@@ -10,7 +10,7 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const { userLoading, user } = useContext(UserContext);
-  console.log("🚀 ~ file: Register.js:13 ~ user:", user)
+  
 
 
   const handleSubmit = async (event) => {

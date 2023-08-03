@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 axios.defaults.withCredentials = true;
 
 const Sell = () => {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('laptop');
 
   const handleChange = (event) => {
     setSelected(event.target.value);

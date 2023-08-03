@@ -1,18 +1,29 @@
 import React from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+axios.defaults.withCredentials = true;
 
 const CreateShopPost = () => {
-  const handleAddToShop = (event) => {
+  const handleAddToShop = async (event) => {
     event.preventDefault();
     const form = event.target;
-    const clubName = form.clubName.value;
-    const editionYear = form.editionYear.value;
-    const price = form.price.value;
-    const sellerName = form.sellerName.value;
-    const phoneNumber = form.phoneNumber.value;
-    const email = form.email.value;
-    const tShirtInfo = form.tShirtInfo.value;
-    const photo = form.photo.value;
-    form.reset();
+    const fileInput = document.getElementById('photo');
+    const newForm = new FormData();
+    newForm.append("name", form.clubName.value);
+    newForm.append("price", form.price.value);
+    newForm.append("description", form.tShirtInfo.value);
+    newForm.append("image", fileInput.files[0]);
+    newForm.append("edition", form.editionYear.value);
+    try {
+      const res = await axios.post("http://localhost:3333/product/add-shop-product", newForm);
+      if (res.status === 200) {
+        toast.success('Product added successfully')
+        form.reset();
+      }
+
+    } catch (error) {
+      toast.error('Something went wrong')
+    }
   };
   return (
     <section className="dark:bg-gray-900">
@@ -94,7 +105,7 @@ const CreateShopPost = () => {
                       className="p-2 w-11/12 border-2 border-dashed rounded-md dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
                     />
                   </div>
-    
+
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="description"

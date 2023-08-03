@@ -35,6 +35,9 @@ const ProductDetails = () => {
           <h2 className="card-title">{details?.name}</h2>
           <p>{details?.description}</p>
           <h3>Price: {details?.price}</h3>
+          {
+            details?.category === 'shop' ? <h3>Edition: {details?.edition}</h3> : null
+          }
           <p>Contact Information</p>
           <p>Owner name :{details?.product_owner?.name}</p>
           <p>Owner email :{details?.product_owner?.email}</p>

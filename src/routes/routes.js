@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         // loader: () => console.log("Shob product fetch hobe ekane"),
       },
       {
-        path: "/buy/:productId",
+        path: "/product/:productId",
         element: <ProductDetails></ProductDetails>,
       },
       {

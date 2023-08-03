@@ -13,6 +13,9 @@ import Sell from "../components/Sell";
 import Team from "../components/Team";
 import ProductDetails from "../components/Buy/ProductDetails";
 import CreateShopPost from "../components/CreateShopPost";
+import MobileCorner from "../components/Buy/MobileCorner";
+import GadgetCorner from "../components/Buy/GadgetCorner";
+import LaptopCorner from "../components/Buy/LaptopCorner";
 
 export const router = createBrowserRouter([
   {
@@ -36,10 +39,18 @@ export const router = createBrowserRouter([
       {
         path: "/buy/:productId",
         element: <ProductDetails></ProductDetails>,
-        // loader: ({ params }) =>
-        //   console.log(
-        //     `Dynamically URL bowaiya fetch korte/${params.productId}`
-        //   ),
+      },
+      {
+        path: "/mobileCorner",
+        element: <MobileCorner></MobileCorner>,
+      },
+      {
+        path: "/gadgetCorner",
+        element: <GadgetCorner></GadgetCorner>,
+      },
+      {
+        path: "/laptopCorner",
+        element: <LaptopCorner></LaptopCorner>,
       },
       {
         path: "/sell",

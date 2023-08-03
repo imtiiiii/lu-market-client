@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { HiArrowLongRight } from "react-icons/hi2";
 axios.defaults.withCredentials = true;
 const Buy = () => {
   const [mobileProducts, setMobileProducts] = React.useState([]);
@@ -46,31 +47,34 @@ const Buy = () => {
       <div className="grid gap-y-4 px-3 md:px-0 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4">
         {
           mobileProducts.map((product, index) => (
-            <div key={index} className="rounded-lg shadow-lg dark:bg-gray-800 border-2">
-              <div className="px-4 py-2">
-                <h1 className="text-xl font-bold text-gray-800 dark:text-white">
-                  {product.name}
-                </h1>
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  {
-                    product.description
-                  }
-                </p>
+            <>
+              <div key={index} className="rounded-lg shadow-lg dark:bg-gray-800 border-2">
+                <div className="px-4 py-2">
+                  <h1 className="text-xl font-bold text-gray-800 dark:text-white">
+                    {product.name}
+                  </h1>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {
+                      product.description
+                    }
+                  </p>
+                </div>
+
+                <img
+                  className="object-cover w-full h-60 mt-2"
+                  src={'http://localhost:3333/uploads/' + product.image}
+                  alt="NIKE AIR"
+                />
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
+                  <h1 className="text-lg font-bold text-white">TK {product.price}</h1>
+                  {/* <p className="text-white text-md"></p> */}
+                  <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
+                    Buy Now
+                  </button>
+                </div>
               </div>
 
-              <img
-                className="object-cover w-full h-60 mt-2"
-                src={'http://localhost:3333/uploads/' + product.image}
-                alt="NIKE AIR"
-              />
-              <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
-                <h1 className="text-lg font-bold text-white">TK {product.price}</h1>
-                {/* <p className="text-white text-md"></p> */}
-                <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
-                  Buy Now
-                </button>
-              </div>
-            </div>
+            </>
 
           ))
         }
@@ -156,6 +160,15 @@ const Buy = () => {
           </div>
         </div> */}
       </div>
+      <div className="flex justify-end" >
+        <button
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 flex w-36 justify-around "
+        >
+          View All{" "}
+          <HiArrowLongRight className="mr-2 text-2xl"></HiArrowLongRight>
+        </button>
+      </div>
 
       {/* Gadget Corner */}
       <div className="border-b-[1px] border-gray-500 mt-10 mb-5 ">
@@ -163,6 +176,7 @@ const Buy = () => {
           Gadget Corner
         </h1>
       </div>
+
       <div className="grid gap-y-4 px-3 md:px-0 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4">
         {
           gadgetProducts.map((product, index) => (
@@ -195,6 +209,15 @@ const Buy = () => {
           ))
         }
       </div>
+      <div className="flex justify-end" >
+        <button
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 flex w-36 justify-around "
+        >
+          View All{" "}
+          <HiArrowLongRight className="mr-2 text-2xl"></HiArrowLongRight>
+        </button>
+      </div>
 
       {/* Laptop Corner */}
       <div className="border-b-[1px] border-gray-500 mt-10 mb-5 ">
@@ -203,7 +226,7 @@ const Buy = () => {
         </h1>
       </div>
       <div className="grid gap-y-4 px-3 md:px-0 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4">
-        {/* Product - 1 */}
+
         {
           laptopProducts.map((product, index) => (
             <div key={index} className="rounded-lg shadow-lg dark:bg-gray-800 border-2">
@@ -234,6 +257,15 @@ const Buy = () => {
 
           ))
         }
+      </div>
+      <div className="flex justify-end" >
+        <button
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 flex w-36 justify-around "
+        >
+          View All{" "}
+          <HiArrowLongRight className="mr-2 text-2xl"></HiArrowLongRight>
+        </button>
       </div>
       {/* Best Places to sell your products */}
       <header className="dark:bg-gray-900">

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from 'axios'
+import axios from "axios";
 
 // import { AuthContext } from "../contexts/UserContext";
 
@@ -12,31 +12,25 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  // const {
-  //   loginWithEmailAndPassword,
-  //   signInWithGoogle,
-  //   signInWithGithub,
-  //   resetPassword,
-  // } = useContext(AuthContext);
-  const handleLogin =async (event) => {
+  // const { signInWithGoogle, signInWithGithub, resetPassword } =
+  //   useContext(AuthContext);
+
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     const email = event.target.email.value;
     const password = event.target.password.value;
     try {
-      const res = await axios.post('http://localhost:3333/auth/login', {
+      const res = await axios.post("http://localhost:3333/auth/login", {
         email,
-        password
-      })
+        password,
+      });
       if (res.data) {
         toast.success("Login success!");
         navigate(from, { replace: true });
         event.target.reset();
       }
-      
-    } catch (error) {
-      
-    }
+    } catch (error) {}
 
     // loginWithEmailAndPassword(email, password)
     //   .then((result) => {
@@ -54,7 +48,7 @@ const Login = () => {
     //   });
   };
 
-  // Google sign in
+  // // Google sign in
   // const handleSignInWithGoogle = () => {
   //   signInWithGoogle()
   //     .then((result) => {
@@ -95,6 +89,7 @@ const Login = () => {
   //       // ..
   //     });
   // };
+
   return (
     <div className="flex justify-center items-center py-8 mb-6">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">

@@ -30,7 +30,10 @@ const Register = () => {
       }
       form.reset();
     } catch (error) {
-      toast.error(error.message);
+      if (error?.response?.status === 500) {
+        toast.error("Internal Server Error!");
+      }
+      toast.error(error?.response?.data?.message ?? "Something went wrong!");
     }
 
     // sign up using email and password

@@ -18,6 +18,12 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const studentId = form.studentId.value;
+    const string = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,}$"
+    const regex = new RegExp(string);
+    if (!regex.test(password)) { 
+      toast.error("Password must contain at least 6 characters, 1 number, 1 uppercase letter, 1 lowercase letter and 1 special character!");
+      return;
+    }
     try {
       const res = await axios.post("http://localhost:3333/auth/register", {
         name,

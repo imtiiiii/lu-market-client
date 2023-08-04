@@ -14,19 +14,17 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 const Header = () => {
   axios.defaults.withCredentials = true;
-  const { userLoading, user } = useContext(UserContext);
+  const { userLoading, user, setUser } = useContext(UserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get('http://localhost:3333/auth/logout')
-      if (res.data) {
-        toast.warning("User logged out!");
-      }
-
-
+      await axios.get("http://localhost:3333/auth/logout");
+      setUser(null);
+      toast.warning("User logged out!");
     } catch (error) {
-
+      setUser(null);
+      toast.warning("User logged out!");
     }
     // return;
     // logOut()

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { UserContext } from "../contexts/UserContext";
 
 // import { AuthContext } from "../contexts/UserContext";
 
@@ -14,7 +15,7 @@ const Login = () => {
 
   // const { signInWithGoogle, signInWithGithub, resetPassword } =
   //   useContext(AuthContext);
-
+  const { userLoading, user,setUser } = useContext(UserContext);
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -26,6 +27,7 @@ const Login = () => {
         password,
       });
       if (res.data) {
+        setUser(res.data);
         toast.success("Login success!");
         navigate(from, { replace: true });
         event.target.reset();

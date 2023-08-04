@@ -24,7 +24,7 @@ const UserProvider = ({ children }) => { // Note: children should be wrapped wit
   }, []);
 
   return (
-    <UserContext.Provider value={{ userLoading, user }}>
+    <UserContext.Provider value={{ userLoading, user,setUser }}>
       {typeof children === 'function' ? children() : children}
     </UserContext.Provider>
   );
